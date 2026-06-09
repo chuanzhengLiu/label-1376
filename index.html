@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Snake | 霓虹贪吃蛇</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Main Game Area -->
+    <main class="game-area">
+        <div class="canvas-wrapper">
+             <!-- Corner Decorations -->
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <div class="corner bottom-left"></div>
+            <div class="corner bottom-right"></div>
+            
+            <canvas id="gameCanvas" width="600" height="600"></canvas>
+            
+            <div id="overlay" class="overlay hidden">
+                <h2 id="overlay-title">游戏结束</h2>
+                <p>得分: <span id="final-score">0</span></p>
+                <button id="restart-btn-overlay" class="btn primary">再试一次</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sidebar Controls -->
+    <aside class="sidebar">
+        <!-- Score Board -->
+        <div class="panel-card score-card">
+            <div class="score-item">
+                <i class="fa-solid fa-trophy"></i>
+                <div class="score-info">
+                    <span class="label">最高分</span>
+                    <span class="value" id="high-score">0</span>
+                </div>
+            </div>
+            <div class="score-item current">
+                <i class="fa-solid fa-star"></i>
+                <div class="score-info">
+                    <span class="label">当前得分</span>
+                    <span class="value" id="current-score">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="panel-card controls-card">
+            <h3>控制中心</h3>
+            <div class="btn-group">
+                <button id="start-btn" class="btn primary"><i class="fa-solid fa-play"></i> 开始</button>
+                <button id="pause-btn" class="btn secondary"><i class="fa-solid fa-pause"></i> 暂停</button>
+            </div>
+            
+            <div class="speed-control">
+                <label>速度等级</label>
+                <div class="level-indicators">
+                    <span class="active">1</span><span>2</span><span>3</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- How to Play -->
+        <div class="panel-card help-card">
+            <h3><i class="fa-solid fa-keyboard"></i> 操作指南</h3>
+            <ul class="key-list">
+                <li><span class="key">↑</span><span class="key">↓</span><span class="key">←</span><span class="key">→</span> 移动</li>
+                <li><span class="key">空格</span> 暂停/继续</li>
+            </ul>
+        </div>
+        
+        <!-- Status -->
+        <div class="status-bar">
+            <span class="status-dot"></span>
+            <span id="game-status">准备就绪</span>
+        </div>
+    </aside>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
