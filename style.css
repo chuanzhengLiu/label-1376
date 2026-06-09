@@ -113,6 +113,57 @@ body {
     text-shadow: 0 0 10px var(--accent-pink);
 }
 
+.settlement-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.settlement-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.settlement-label {
+    font-size: 0.9rem;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+.settlement-value {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-neon);
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+}
+
+.new-record {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 0;
+    animation: record-pulse 1s ease-in-out infinite alternate;
+}
+
+.new-record.hidden {
+    display: none;
+}
+
+@keyframes record-pulse {
+    from { opacity: 0.7; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.05); }
+}
+
 #restart-btn-overlay {
     flex: 0 0 auto;
     min-width: 140px;
