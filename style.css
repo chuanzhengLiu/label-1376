@@ -118,6 +118,19 @@ body {
     min-width: 140px;
 }
 
+/* New Record Badge */
+.new-record {
+    font-family: var(--font-heading);
+    color: var(--primary-neon);
+    text-shadow: 0 0 8px var(--primary-neon);
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.new-record.hidden {
+    display: none;
+}
+
 /* Sidebar */
 .sidebar {
     flex: 1;
