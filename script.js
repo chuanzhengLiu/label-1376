@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusDot = document.querySelector('.status-dot');
     const overlay = document.getElementById('overlay');
     const finalScoreEl = document.getElementById('final-score');
+    const finalMaxSpeedEl = document.getElementById('final-max-speed');
+    const newRecordEl = document.getElementById('new-record');
     const restartBtnOverlay = document.getElementById('restart-btn-overlay');
     const speedIndicators = document.querySelectorAll('.level-indicators span');
 
@@ -30,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isGameRunning = false;
     let isPaused = false;
     let speedIndex = 1; // Default to Normal
+    let maxSpeedIndex = 1;
 
     // --- Initialization ---
     function init() {
@@ -49,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dx = 0;
         dy = -1; // Move up initially
         score = 0;
+        maxSpeedIndex = speedIndex;
         updateScore(0);
         placeFood();
         isPaused = false;
@@ -56,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(gameInterval);
         setStatus('准备就绪', 'active');
         overlay.classList.add('hidden');
+        newRecordEl.classList.add('hidden');
     }
 
     function startGame() {
@@ -68,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         isGameRunning = true;
         isPaused = false;
+        maxSpeedIndex = speedIndex;
         setStatus('游戏中', 'active');
         gameInterval = setInterval(gameLoop, SPEED_LEVELS[speedIndex]);
         startBtn.innerHTML = '<i class="fa-solid fa-rotate-right"></i> 重新开始';
@@ -94,13 +100,23 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(gameInterval);
         setStatus('游戏结束', 'paused');
         
-        if (score > highScore) {
+        const isNewRecord = score > highScore;
+        
+        if (isNewRecord) {
             highScore = score;
             localStorage.setItem('neonSnakeHighScore', highScore);
             highScoreEl.innerText = highScore;
         }
 
         finalScoreEl.innerText = score;
+        finalMaxSpeedEl.innerText = maxSpeedIndex + 1;
+        
+        if (isNewRecord) {
+            newRecordEl.classList.remove('hidden');
+        } else {
+            newRecordEl.classList.add('hidden');
+        }
+        
         overlay.classList.remove('hidden');
         startBtn.innerHTML = '<i class="fa-solid fa-play"></i> 开始';
     }
@@ -305,6 +321,9 @@ document.addEventListener('DOMContentLoaded', () => {
             speedIndicators.forEach(s => s.classList.remove('active'));
             ind.classList.add('active');
             speedIndex = idx;
+            if (speedIndex > maxSpeedIndex) {
+                maxSpeedIndex = speedIndex;
+            }
             // If running, restart timer with new speed
             if (isGameRunning && !isPaused) {
                 clearInterval(gameInterval);
