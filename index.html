@@ -28,7 +28,19 @@
             
             <div id="overlay" class="overlay hidden">
                 <h2 id="overlay-title">游戏结束</h2>
-                <p>得分: <span id="final-score">0</span></p>
+                <div id="new-record-badge" class="new-record-badge hidden">
+                    <i class="fa-solid fa-crown"></i> 新纪录！
+                </div>
+                <div class="result-list">
+                    <div class="result-item">
+                        <span class="result-label">最终得分</span>
+                        <span class="result-value" id="final-score">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">最高速度等级</span>
+                        <span class="result-value" id="final-max-speed">1</span>
+                    </div>
+                </div>
                 <button id="restart-btn-overlay" class="btn primary">再试一次</button>
             </div>
         </div>
